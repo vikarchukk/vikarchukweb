@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>vikarchuk</title>
+
+    <style>
+
+        @font-face { font-family: 'monocraft'; src: url('./monocraft.ttf') format('truetype'); }
+
+        * {
+            font-family: 'monocraft';
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* ---------- tabs ---------- */
+
+            .tabs { 
+                height: 100vh;
+                width: 100vw;
+
+                padding: 5px;
+
+                display: flex;
+            }
+
+            /* ---------- nav ---------- */
+
+                .tabs-nav { 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                .tabs-nav-btn {
+                    flex-grow: 1;
+
+                    border: 2px solid #000000;
+                    border-right: 0;
+
+                    font-size: 25px;
+                    text-align: center;
+                    writing-mode: vertical-rl;
+                    text-orientation: upright;
+
+                    cursor: pointer;
+                    transition: all 250ms ease-in-out;
+                }
+
+                .tabs-nav-btn:nth-child(2) { border-top: 0; border-bottom: 0; }
+
+                .tabs-nav-btn.active { color: #ffffff; background-color: #000000; }
+
+            /* ---------- nav ---------- */
+
+            /* ---------- content ---------- */
+
+                .tabs-content {
+                    width: 100%;
+                    border: 2px solid #000000;
+                }
+
+                .tabs-item { display: none; }
+
+                .tabs-item.active { display: block; }
+
+            /* ---------- content ---------- */
+        
+        /* ---------- tabs ---------- */
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="tabs">
+
+        <div class="tabs-nav">
+
+            <div class="tabs-nav-btn active" data-tab="#tab-1">main</div>
+
+            <div class="tabs-nav-btn" data-tab="#tab-2">map</div>
+
+            <div class="tabs-nav-btn" data-tab="#tab-3">portfolio</div>
+
+        </div>
+
+        <div class="tabs-content">
+
+            <div class="tabs-item active" id="tab-1">
+                тут буде про послуги
+            </div>
+
+            <div class="tabs-item" id="tab-2">
+                тут буде порядок дій
+            </div>
+
+            <div class="tabs-item" id="tab-3">
+                тут буде портфоліо
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        /* ---------- tabs ---------- */
+
+            const tabsBtn = document.querySelectorAll(".tabs-nav-btn");
+            const tabsItems = document.querySelectorAll(".tabs-item");
+
+            tabsBtn.forEach(onTabClick);
+
+            function onTabClick(item) {
+                item.addEventListener("click", function() {
+                    let currentBtn = item;
+                    let tabId = currentBtn.getAttribute("data-tab");
+                    let currentTab = document.querySelector(tabId);
+
+                    if( ! currentBtn.classList.contains('active') ) {
+                        tabsBtn.forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                
+                        tabsItems.forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                
+                        currentBtn.classList.add('active');
+                        currentTab.classList.add('active');
+                    }
+                });
+            }
+
+        /* ---------- tabs ---------- */
+
+        /* ---------- safari ---------- */
+
+            const isIOS = /iPad|iPhone/.test(navigator.userAgent) && !window.MSStream;
+            const isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && navigator.userAgent && !navigator.userAgent.match('CriOS');
+
+            if (isIOS && isSafari) {
+                document.querySelector('.tabs').style.height = 'calc(100vh - 89px)';
+            }
+
+        /* ---------- safari ---------- */
+
+    </script>
+
+</body>
+
+</html>
