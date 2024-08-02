@@ -38,13 +38,13 @@
 
             /* ---------- nav ---------- */
 
-                .tabs-nav { 
+                .tabs_nav { 
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                 }
 
-                .tabs-nav-btn {
+                .tabs_nav_btn {
                     flex-grow: 1;
 
                     border: 2px solid #000000;
@@ -59,26 +59,86 @@
                     transition: all 250ms ease-in-out;
                 }
 
-                .tabs-nav-btn:nth-child(2) { border-top: 0; border-bottom: 0; }
+                .tabs_nav_btn:nth-child(2) { border-top: 0; border-bottom: 0; }
 
-                .tabs-nav-btn.active { color: #ffffff; background-color: #000000; }
+                .tabs_nav_btn.active { color: #ffffff; background-color: #000000; }
 
             /* ---------- nav ---------- */
 
             /* ---------- content ---------- */
 
-                .tabs-content {
+                .tabs_content {
                     width: 100%;
                     border: 2px solid #000000;
                 }
 
-                .tabs-item { display: none; }
+                .tabs_item { display: none; height: 100%; }
 
-                .tabs-item.active { display: block; }
+                .tabs_item.active { display: block; }
 
             /* ---------- content ---------- */
         
         /* ---------- tabs ---------- */
+
+        /* ---------- main ---------- */
+
+            .main {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px;
+            }
+
+            .main_qrcode {
+                display: none;
+
+                padding-top: 100%;
+
+                background-image: url('./qrcode.webp');
+                background-size: contain;
+            }
+
+            .main_title {
+                font-size: 50px;
+            }
+
+            .main_text {
+                font-size: 30px;
+            }
+
+            .main_contact {
+                font-size: 30px;
+                text-decoration: none;
+                color: #0000ff;
+                margin-top: auto;
+            }
+
+            @media (max-width: 450px) {
+
+                .main {
+                    padding: 10px;
+                    gap: 10px;
+                }
+
+                .main_qrcode { 
+                    display: block;
+                }
+
+                .main_title {
+                    font-size: 28px;
+                }
+
+                .main_text {
+                    font-size: 18px;
+                }
+
+                .main_contact {
+                    font-size: 25px;
+                }
+            }
+
+        /* ---------- main ---------- */
 
     </style>
 
@@ -88,27 +148,33 @@
 
     <div class="tabs">
 
-        <div class="tabs-nav">
+        <div class="tabs_nav">
 
-            <div class="tabs-nav-btn active" data-tab="#tab-1">main</div>
+            <div class="tabs_nav_btn active" data-tab="#tab-1">main</div>
 
-            <div class="tabs-nav-btn" data-tab="#tab-2">map</div>
+            <div class="tabs_nav_btn" data-tab="#tab-2">map</div>
 
-            <div class="tabs-nav-btn" data-tab="#tab-3">portfolio</div>
+            <div class="tabs_nav_btn" data-tab="#tab-3">portfolio</div>
 
         </div>
 
-        <div class="tabs-content">
+        <div class="tabs_content">
 
-            <div class="tabs-item active" id="tab-1">
-                тут буде про послуги
+            <div class="tabs_item active" id="tab-1">
+                <div class="main">
+                    <div class="main_qrcode"></div>
+                    <div class="main_title">Розробка сайту і запуск реклами</div>
+                    <div class="main_text">Всі етапи розробки описані в кладці [ map ]</div>
+                    <div class="main_text">Мої завершені проекти в кладці [ portfolio ]</div>
+                    <a class="main_contact" href="tel:+46769530342">+46769530342</a>
+                </div>
             </div>
 
-            <div class="tabs-item" id="tab-2">
+            <div class="tabs_item" id="tab-2">
                 тут буде порядок дій
             </div>
 
-            <div class="tabs-item" id="tab-3">
+            <div class="tabs_item" id="tab-3">
                 тут буде портфоліо
             </div>
 
@@ -120,8 +186,8 @@
 
         /* ---------- tabs ---------- */
 
-            const tabsBtn = document.querySelectorAll(".tabs-nav-btn");
-            const tabsItems = document.querySelectorAll(".tabs-item");
+            const tabsBtn = document.querySelectorAll(".tabs_nav_btn");
+            const tabsItems = document.querySelectorAll(".tabs_item");
 
             tabsBtn.forEach(onTabClick);
 
