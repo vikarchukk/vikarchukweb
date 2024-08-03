@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>vikarchuk</title>
+    <title>vikarchukweb</title>
 
     <style>
 
         @font-face { font-family: 'monocraft'; src: url('./monocraft.ttf') format('truetype'); }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
 
         * {
             font-family: 'monocraft';
 
             margin: 0;
             padding: 0;
-
             box-sizing: border-box;
         }
 
@@ -25,14 +28,17 @@
             color: #000000;
         }
 
+        a {
+            text-decoration: none;
+            color: #0000ff;
+        }
+
         /* ---------- tabs ---------- */
 
             .tabs { 
                 height: 100vh;
                 width: 100vw;
-
                 padding: 5px;
-
                 display: flex;
             }
 
@@ -59,9 +65,15 @@
                     transition: all 250ms ease-in-out;
                 }
 
-                .tabs_nav_btn:nth-child(2) { border-top: 0; border-bottom: 0; }
+                .tabs_nav_btn:nth-child(2) { 
+                    border-top: 0; 
+                    border-bottom: 0; 
+                }
 
-                .tabs_nav_btn.active { color: #ffffff; background-color: #000000; }
+                .tabs_nav_btn.active { 
+                    color: #ffffff; 
+                    background-color: #000000; 
+                }
 
             /* ---------- nav ---------- */
 
@@ -72,9 +84,25 @@
                     border: 2px solid #000000;
                 }
 
-                .tabs_item { display: none; height: 100%; }
+                .tabs_item { 
+                    display: none;
+                    overflow-y: auto;
+                    flex-direction: column;
 
-                .tabs_item.active { display: block; }
+                    height: 100%;
+                    gap: 30px;
+                    padding: 30px;
+                }
+
+                .tabs_item.active { display: flex; }
+
+                @media (max-width: 450px) {
+
+                    .tabs_item {
+                        padding: 10px;
+                        gap: 10px;
+                    }
+                }
 
             /* ---------- content ---------- */
         
@@ -82,63 +110,69 @@
 
         /* ---------- main ---------- */
 
-            .main {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 30px;
-                padding: 30px;
-            }
-
             .main_qrcode {
                 display: none;
-
                 padding-top: 100%;
-
                 background-image: url('./qrcode.webp');
                 background-size: contain;
             }
 
-            .main_title {
-                font-size: 50px;
-            }
+            .main_title { font-size: 50px; }
 
-            .main_text {
-                font-size: 30px;
-            }
+            .main_text { font-size: 30px; }
 
-            .main_contact {
-                font-size: 30px;
-                text-decoration: none;
-                color: #0000ff;
-                margin-top: auto;
+            .main_contact { 
+                font-size: 30px; 
+                margin-top: auto; 
             }
 
             @media (max-width: 450px) {
 
-                .main {
-                    padding: 10px;
-                    gap: 10px;
+                .main_qrcode { display: block; }
+
+                .main_title { font-size: 28px; }
+
+                .main_text { 
+                    font-size: 18px; 
+                    line-height: 30px; 
                 }
 
-                .main_qrcode { 
-                    display: block;
-                }
+                .main_contact { font-size: 25px; }
+            }
 
-                .main_title {
-                    font-size: 28px;
-                }
+        /* ---------- main ---------- */
 
-                .main_text {
+        /* ---------- map ---------- */
+
+            .map {
+                font-size: 23px;
+                line-height: 30px;
+            }
+
+            @media (max-width: 450px) {
+
+                .map {
                     font-size: 18px;
+                    line-height: 30px;
                 }
+            }
 
-                .main_contact {
+        /* ---------- map ---------- */
+
+        /* ---------- portfolio ---------- */
+
+            .portfolio {
+                font-size: 30px;
+            }
+
+            @media (max-width: 450px) {
+
+                .portfolio {
                     font-size: 25px;
                 }
             }
 
-        /* ---------- main ---------- */
+        /* ---------- portfolio ---------- */
 
     </style>
 
@@ -151,31 +185,44 @@
         <div class="tabs_nav">
 
             <div class="tabs_nav_btn active" data-tab="#tab-1">main</div>
-
             <div class="tabs_nav_btn" data-tab="#tab-2">map</div>
-
             <div class="tabs_nav_btn" data-tab="#tab-3">portfolio</div>
 
         </div>
 
         <div class="tabs_content">
 
-            <div class="tabs_item active" id="tab-1">
-                <div class="main">
-                    <div class="main_qrcode"></div>
-                    <div class="main_title">Розробка сайту і запуск реклами</div>
-                    <div class="main_text">Всі етапи розробки описані в кладці [ map ]</div>
-                    <div class="main_text">Мої завершені проекти в кладці [ portfolio ]</div>
-                    <a class="main_contact" href="tel:+46769530342">+46769530342</a>
-                </div>
+            <div class="tabs_item main active" id="tab-1">
+                <div class="main_qrcode"></div>
+                <div class="main_title">Розробка сайту і запуск реклами</div>
+                <div class="main_text">Всі етапи розробки описані в кладці [ map ]</div>
+                <div class="main_text">Мої завершені проекти в кладці [ portfolio ]</div>
+                <a class="main_contact" href="tel:+46769530342">+46769530342</a>
             </div>
 
-            <div class="tabs_item" id="tab-2">
-                тут буде порядок дій
+            <div class="tabs_item map" id="tab-2">
+                <div>> обговорення що має бути на сайті (структура, послуги, портфоліо, форма, ...)</div>
+                <div>> створення дизайну</div>
+                <div>> написання коду сайту</div>
+                <div>> рєстрація хмари для зберігання всіх фотографій</div>
+                <div>> обробка фотографій для портфоліо і сортрумання (якщо потрібно)</div>
+                <div>> встановлення фотографії в сайт</div>
+                <div>> створення логотипа</div>
+                <div>> доопрацювання кінцевого вигляду сайту (сортування портфоліо, правка тексту, ...)</div>
+                <div>> покупка домену (+ верефікація) і пошти</div>
+                <div>> підключення форми на сайті до пошти</div>
+                <div>> оформлення соціальних мереж (привязка сайту до них)</div>
+                <div>> реєстрація сайту в пошукову сестему google</div>
+                <div>> створення банеру і мерчу на фудболку (за бажанням)</div>
+                <div>> створення рекламного банеру</div>
+                <div>> запуск реклама</div>
+                <div>> підтримка сайту (монтування фото і добавлення на сайт, запуск реклами, ...)</div>
+                <div># результат: сайт, логотип, банери, реклама, інстаграм, фейсбук, ...</div>
             </div>
 
-            <div class="tabs_item" id="tab-3">
-                тут буде портфоліо
+            <div class="tabs_item portfolio" id="tab-3">
+                <a href="https://fedenkobygg.se/" target="_blank">fedenkobygg.se</a>
+                <a href="https://novihem.se/" target="_blank">novihem.se</a>
             </div>
 
         </div>
