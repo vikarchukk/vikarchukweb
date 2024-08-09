@@ -9,7 +9,7 @@
 
     <style>
 
-        @font-face { font-family: 'monocraft'; src: url('./monocraft.ttf') format('truetype'); }
+        @font-face { font-family: 'monocraft'; src: url('./monocraft.ttf') format('truetype'); font-display: swap; }
 
         ::-webkit-scrollbar {
             width: 0;
@@ -79,6 +79,8 @@
                     .tabs_nav_btn {
                         flex-grow: 1;
 
+                        /* border-bottom: 2px solid #000000; */
+                        /* border-right: 2px solid #000000; */
                         border: 2px solid #000000;
                         border-right: 0;
 
@@ -95,6 +97,10 @@
                         border-top: 0;
                         border-bottom: 0;
                     }
+
+                    /* .tabs_nav_btn:last-child {
+                        border-bottom: 0;
+                    } */
 
                     .tabs_nav_btn.active { 
                         color: #ffffff;
@@ -142,6 +148,29 @@
         /* ---------- tools ---------- */
 
         /* ---------- main ---------- */
+
+            .main_lang {
+                display: flex;
+                text-align: center;
+                font-size: 18px;
+            }
+
+            .main_lang span {
+                flex-grow: 1;
+                padding: 5px;
+                border-bottom: 2px solid #000000;
+                border-right: 2px solid #000000;
+                cursor: pointer;
+            }
+
+            .main_lang span:last-child {
+                border-right: 0;
+            }
+
+            .main_lang_active {
+                color: #ffffff;
+                background-color: #000000;
+            }
 
             .main_qrcode div {
                 padding-top: 20%;
@@ -260,6 +289,12 @@
         <div class="tabs_content">
 
             <div class="tabs_item main active" id="tab-1">
+                <span class="main_lang">
+                    <span>ENG</span>
+                    <span class="main_lang_active">UKR</span>
+                    <span>RUS</span>
+                    <span>SWE</span>
+                </span>
                 <div class="main_qrcode"><div></div></div>
                 <div class="main_title">Розробка сайту і запуск реклами</div>
                 <div class="main_text">
@@ -317,7 +352,11 @@
                     <span>- правка соціальних мереж</span>
                 </div>
                 <div>[8] передача всіх даних і створення резервної копії в drive.google.com</div>
-                <div>[9] запуск реклами</div>
+                <div>
+                    <span>[9] запуск реклами</span>
+                    <span>- тестування всіх контакних даних</span>
+                    <span>- планування закупівлі реклами</span>
+                </div>
                 <div>
                     <span>[#] підтримка сайту</span>
                     <span>- редагування фотографій</span>
@@ -332,10 +371,9 @@
                 <div><a class="portfolio_title" href="https://fedenkobygg.se/" target="_blank">fedenkobygg.se</a></div>
                 <div class="portfolio_img">
                     <div class="lazyload-bg" data-bg="img/fedenkobygg.se/logo.png"></div>
-                    <div class="lazyload-bg" data-bg="img/fedenkobygg.se/web-1.png"></div>
-                    <div class="lazyload-bg" data-bg="img/fedenkobygg.se/web-2.png"></div>
                     <div class="lazyload-bg" data-bg="img/fedenkobygg.se/baner.png"></div>
                     <div class="lazyload-bg" data-bg="img/fedenkobygg.se/baner-ads.png"></div>
+                    <div class="lazyload-bg" data-bg="img/fedenkobygg.se/web.webp"></div>
                     <div class="lazyload-bg" data-bg="img/fedenkobygg.se/instagram.png"></div>
                 </div>
                 <div><a class="portfolio_title" href="https://novihem.se/" target="_blank">novihem.se</a></div>
@@ -376,6 +414,18 @@
             }
 
         /* ---------- tabs ---------- */
+
+        /* ---------- lang ---------- */
+
+            const langSpans = document.querySelectorAll('.main_lang span');
+            langSpans.forEach(span => {
+                span.addEventListener('click', () => {
+                    langSpans.forEach(span => span.classList.remove('main_lang_active'));
+                    span.classList.add('main_lang_active');
+                });
+            });
+
+        /* ---------- lang ---------- */
 
         /* ---------- lazyload-bg ---------- */
 
